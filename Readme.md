@@ -75,6 +75,11 @@ Now go to the created activity, and either
 ```
 
 
+* **In both cases, add the following to your AndroidManifest.xml file :**
+``` xml
+	 <uses-permission android:name="android.permission.NFC" />
+```
+
 ## Start Reading
 
 * Paste this in the activity if you're **extending our class** : 
