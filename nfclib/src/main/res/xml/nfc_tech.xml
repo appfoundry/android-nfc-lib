@@ -1,0 +1,44 @@
+<!--
+  ~ nfc_tech.xml
+  ~ NfcLibrary project.
+  ~
+  ~ Created by : Daneo van Overloop - 17/6/2014.
+  ~
+  ~ The MIT License (MIT)
+  ~
+  ~ Copyright (c) 2014 AppFoundry. All rights reserved.
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <tech-list>
+        <tech>android.nfc.tech.NfcA</tech>
+        <tech>android.nfc.tech.Ndef</tech>
+    </tech-list>
+    <tech-list>
+        <tech>android.nfc.tech.NfcB</tech>
+        <tech>android.nfc.tech.Ndef</tech>
+    </tech-list>
+
+    <tech-list>
+        <tech>android.nfc.tech.NfcF</tech>
+        <tech>android.nfc.tech.NfcV</tech>
+        <tech>android.nfc.tech.Ndef</tech>
+           </tech-list>
+
+    <tech-list>
+        <tech>android.nfc.tech.Ndef</tech>
+        <tech>android.nfc.tech.NdefFormatable</tech>
+        <tech>android.nfc.tech.MifareClassic</tech>
+        <tech>android.nfc.tech.MifareUltralight</tech>
+    </tech-list>
+</resources>
