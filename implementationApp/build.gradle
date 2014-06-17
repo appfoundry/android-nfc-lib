@@ -84,7 +84,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':nfclib')
-    //compile 'be.appfoundry:nfc-lib:1.0'
+    compile 'be.appfoundry:nfc-lib:1.0'
     //compile 'com.stanfy.spoon:spoon-gradle-plugin:0.9.6'
 
     //androidTestCompile 'org.hamcrest:hamcrest-all:1.3'
