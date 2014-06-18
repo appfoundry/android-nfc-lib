@@ -120,7 +120,6 @@ Now go to the created activity, and either
 ```
 
 * Now you're able to read the NFC Tags as long as the library supports the data in it when held to your phone!
-* See [Reading]
 
 ## Write to a tag
 * Let your activity implement `AsyncUiCallback`: 
@@ -174,7 +173,6 @@ Now go to the created activity, and either
 
 * If you did not opt for extending, take a look at the [official docs], or the source code.
 
-[Reading]:ReadUtility.md
 [NFC Forum]:http://members.nfc-forum.org/specs/
 [FGD]:http://developer.android.com/guide/topics/connectivity/nfc/advanced-nfc.html#foreground-dispatch
 [official docs]:http://developer.android.com/guide/topics/connectivity/nfc/nfc.html#p2p
