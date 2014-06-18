@@ -5,7 +5,7 @@ What you'll need when using this library :
 
 |Android        | ver |
 |:-------------|:------:|
-| API| 16|
+| API| >=16|
 
 
 ## Quick start
@@ -167,8 +167,14 @@ Now go to the created activity, and either
 ```
 * If you hold a tag against the phone and it is NFC Enabled, your implementation of the methods will be executed.
 
+## Android Beam
+* When extending our class, all you have to do in order to enable Android Beam is call the `enableBeam()` method.
+    * This enables Android Beam
+    * Provides a default implementation with a standard text
 
+* If you did not opt for extending, then you can take a look at the [official docs], or the source code.
 
 [Reading]:ReadUtility.md
 [NFC Forum]:http://members.nfc-forum.org/specs/
 [FGD]:http://developer.android.com/guide/topics/connectivity/nfc/advanced-nfc.html#foreground-dispatch
+[official docs]:http://developer.android.com/guide/topics/connectivity/nfc/nfc.html#p2p
