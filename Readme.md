@@ -172,7 +172,7 @@ Now go to the created activity, and either
     * This enables Android Beam
     * Provides a default implementation with a standard text
 
-* If you did not opt for extending, then you can take a look at the [official docs], or the source code.
+* If you did not opt for extending, take a look at the [official docs], or the source code.
 
 [Reading]:ReadUtility.md
 [NFC Forum]:http://members.nfc-forum.org/specs/
