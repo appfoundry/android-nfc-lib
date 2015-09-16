@@ -10,24 +10,24 @@ What you'll need when using this library :
 
 ## Quick start
 
-In order to get a quick demo running you could perform the following steps : 
+In order to get a quick demo running you could perform the following steps :
 
-*  Add this to the repositories block : 
-   	
+*  Add this to the repositories block :
+
 ``` groovy
 	repositories {
    		maven{
-        	url "http://www.appfoundry.be/maven"
+        	url "http://maven.appfoundry.be"
     	}
 	}
-```	
-* Go to your project's `build.gradle` file, and change the dependencies block to match the following line of code there : 
-   
+```
+* Go to your project's `build.gradle` file, and change the dependencies block to match the following line of code there :
+
 ``` groovy
     compile 'be.appfoundry:nfc-lib:1.0'
 ```
 
-Now go to the created activity, and either 
+Now go to the created activity, and either
 
 * Implement [FGD] yourself
 
@@ -37,7 +37,7 @@ Now go to the created activity, and either
     	private IntentFilter[] mIntentFilters;
    		private String[][] mTechLists;
     	private NfcAdapter mNfcAdapter;
-    	    
+
   	 	protected void onCreate(Bundle savedInstanceState) {
         	super.onCreate(savedInstanceState);
         	setContentView(R.layout.activity_main);
@@ -82,7 +82,7 @@ Now go to the created activity, and either
 
 ## Start Reading
 
-* Paste this in the activity if you're **extending our class** : 
+* Paste this in the activity if you're **extending our class** :
 
 
 ``` java
@@ -107,7 +107,7 @@ Now go to the created activity, and either
         }
     }
 ```
-* If you like the Map implementation more you might as well use : 
+* If you like the Map implementation more you might as well use :
 
 ``` java
     @Override
@@ -122,7 +122,7 @@ Now go to the created activity, and either
 * Now you're able to read the NFC Tags as long as the library supports the data in it when held to your phone!
 
 ## Write to a tag
-* Let your activity implement `AsyncUiCallback`: 
+* Let your activity implement `AsyncUiCallback`:
 
 
 ``` java
@@ -131,23 +131,23 @@ Now go to the created activity, and either
         String message = result ? "Success" : "Failed!";
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
-    
+
     @Override
     public void onProgressUpdate(Boolean... booleans) {
         Toast.makeText(this, booleans[0] ? "We started writing" : "We could not write!",Toast.LENGTH_SHORT).show();
     }
-    
+
     @Override
     public void onError(Exception e) {
         Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
     }
 ```
-    
+
 * Create a field with an `AsyncOperationCallback` in the following way :
-        
+
 ``` java
 	AsyncOperationCallback mAsyncOperationCallback = new AsyncOperationCallback() {
-	
+
         @Override
         public boolean performWrite(NfcWriteUtility writeUtility) throws ReadOnlyTagException, InsufficientCapacityException, TagNotPresentException, FormatException {
             return writeUtility.writeEmailToTagFromIntent("some@email.tld","Subject","Message",getIntent());

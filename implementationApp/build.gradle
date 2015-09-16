@@ -34,7 +34,7 @@ buildscript {
 
 repositories{
     maven{
-        url "http://www.appfoundry.be/maven"
+        url "http://maven.appfoundry.be"
     }
 
     maven {
