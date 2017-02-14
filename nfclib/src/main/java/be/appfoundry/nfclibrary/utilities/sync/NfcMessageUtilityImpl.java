@@ -85,7 +85,6 @@ public class NfcMessageUtilityImpl implements NfcMessageUtility {
      */
     @Override
     public NdefMessage createUri(@NotNull String urlAddress) throws FormatException {
-        //TODO : Validation of the URL - Strip prefix && Mark payload
         return createUriMessage(urlAddress, NfcPayloadHeader.HTTP_WWW);
     }
 
@@ -124,8 +123,6 @@ public class NfcMessageUtilityImpl implements NfcMessageUtility {
      */
     @Override
     public NdefMessage createGeolocation(Double latitude, Double longitude) throws FormatException {
-        //TODO : Validation of the lat- and longitude, max 6 decimals
-
         latitude = Math.round(latitude * Math.pow(10, 6)) / Math.pow(10, 6);
         longitude = Math.round(longitude * Math.pow(10, 6)) / Math.pow(10, 6);
         String address = "geo:" + latitude.floatValue() + "," + longitude.floatValue();
@@ -141,11 +138,9 @@ public class NfcMessageUtilityImpl implements NfcMessageUtility {
      */
     @Override
     public NdefMessage createEmail(@NotNull String recipient, String subject, String message) throws FormatException {
-        //TODO : Validation of the recipient's email address
         subject = (subject != null) ? subject : "";
         message = (message != null) ? message : "";
         String address = recipient + "?subject=" + subject + "&body=" + message;
-
 
         return createUriMessage(address, NfcPayloadHeader.MAILTO);
     }
@@ -156,10 +151,8 @@ public class NfcMessageUtilityImpl implements NfcMessageUtility {
      */
     @Override
     public NdefMessage createBluetoothAddress(@NotNull String macAddress) throws FormatException {
-
         byte[] payload = convertBluetoothToNdefFormat(macAddress);
         NdefRecord record = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, NfcType.BLUETOOTH_AAR, null, payload);
-
 
         return new NdefMessage(record);
     }
@@ -185,7 +178,6 @@ public class NfcMessageUtilityImpl implements NfcMessageUtility {
         return createUriMessage(urlAddress,payloadHeader);
     }
 
-
     /**
      * Write URI to tag
      *
@@ -197,8 +189,6 @@ public class NfcMessageUtilityImpl implements NfcMessageUtility {
      * @return true if success
      */
     private NdefMessage createUriMessage(@NotNull String urlAddress, byte payloadHeader) {
-
-        //TODO : Validation of the URL - Strip prefix && Mark payload
         byte[] uriField = urlAddress.getBytes(Charset.forName("US-ASCII"));
         byte[] payload = new byte[uriField.length + 1];
         payload[0] = payloadHeader; // Marks the prefix
@@ -234,11 +224,9 @@ public class NfcMessageUtilityImpl implements NfcMessageUtility {
             System.out.println(res[5 - i]);
         }
 
-
         res[0] = (byte) (res.length % 256);
         res[1] = (byte) (res.length / 256);
         return res;
-
     }
 
 }

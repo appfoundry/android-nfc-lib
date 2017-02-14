@@ -120,10 +120,8 @@ public class NfcWriteUtilityImpl implements NfcWriteUtility {
      */
     @Override
     public boolean writeUriWithPayloadToTagFromIntent(@NotNull String urlAddress, byte payloadHeader, @NotNull Intent intent) throws FormatException, ReadOnlyTagException, InsufficientCapacityException, TagNotPresentException {
-
         NdefMessage ndefMessage = mNfcMessageUtility.createUri(urlAddress, payloadHeader);
         final Tag tag = retrieveTagFromIntent(intent);
-
         return writeToTag(ndefMessage, tag);
     }
 
@@ -164,7 +162,6 @@ public class NfcWriteUtilityImpl implements NfcWriteUtility {
     public boolean writeEmailToTagFromIntent(@NotNull String recipient, String subject, String message, @NotNull Intent intent) throws FormatException, ReadOnlyTagException, InsufficientCapacityException, TagNotPresentException {
         final NdefMessage ndefMessage = mNfcMessageUtility.createEmail(recipient, subject, message);
         final Tag tag = retrieveTagFromIntent(intent);
-
         return writeToTag(ndefMessage, tag);
     }
 

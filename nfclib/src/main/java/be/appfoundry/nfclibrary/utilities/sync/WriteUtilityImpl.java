@@ -40,7 +40,6 @@ import be.appfoundry.nfclibrary.utilities.interfaces.WriteUtility;
  */
 public class WriteUtilityImpl implements WriteUtility {
 
-
     private static final String TAG = WriteUtilityImpl.class.getName();
 
     private boolean readOnly = false;
@@ -91,7 +90,6 @@ public class WriteUtilityImpl implements WriteUtility {
 
     @Override
     public boolean writeSafelyToTag(NdefMessage message, Tag tag) {
-
         try {
             writeToTag(message, tag);
         } catch (ReadOnlyTagException e) {
@@ -119,13 +117,10 @@ public class WriteUtilityImpl implements WriteUtility {
 
         readOnly = false;
         return result;
-
     }
 
     public WriteUtility makeOperationReadOnly() {
         readOnly = true;
-
         return this;
-
     }
 }

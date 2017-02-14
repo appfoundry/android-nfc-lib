@@ -21,7 +21,7 @@
 
 import com.android.builder.core.BuilderConstants
 
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 //apply plugin: 'maven-publish'
 apply plugin: 'maven'
 apply plugin: 'signing'
@@ -43,22 +43,21 @@ apply plugin: 'signing'
 //}
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 19
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
         release {
-//            runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
        }
         debug {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }

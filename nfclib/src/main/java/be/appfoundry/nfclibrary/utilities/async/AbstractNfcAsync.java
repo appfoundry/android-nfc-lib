@@ -153,7 +153,6 @@ public abstract class AbstractNfcAsync implements AsyncNfcWriteOperation {
      */
     protected boolean checkStringArguments(Class<?> type) {
         return (type.equals(String[].class));
-
     }
 
     /**
@@ -166,6 +165,5 @@ public abstract class AbstractNfcAsync implements AsyncNfcWriteOperation {
      */
     protected boolean checkDoubleArguments(Class<?> type) {
         return type.equals(Double[].class);
-
     }
 }

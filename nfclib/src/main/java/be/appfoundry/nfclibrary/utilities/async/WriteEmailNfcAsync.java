@@ -41,7 +41,6 @@ import be.appfoundry.nfclibrary.utilities.interfaces.NfcWriteUtility;
  */
 public class WriteEmailNfcAsync extends AbstractNfcAsync {
 
-
     /**
      * Instantiates a new WriteEmailNfcAsync.
      *
@@ -76,7 +75,6 @@ public class WriteEmailNfcAsync extends AbstractNfcAsync {
 
     @Override
     public void executeWriteOperation(final Intent intent, Object... args) {
-
         if (!checkStringArguments(args.getClass()) || args.length == 0) {
             throw new UnsupportedOperationException("Incorrect arguments");
         }
@@ -92,8 +90,6 @@ public class WriteEmailNfcAsync extends AbstractNfcAsync {
         });
 
         super.executeWriteOperation();
-
     }
-
 
 }

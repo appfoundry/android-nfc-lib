@@ -88,7 +88,6 @@ abstract public class NfcActivity extends Activity implements NfcAdapter.CreateN
         super.onCreate(savedInstanceState);
         initAdapter();
         initFields();
-        
     }
 
     /**

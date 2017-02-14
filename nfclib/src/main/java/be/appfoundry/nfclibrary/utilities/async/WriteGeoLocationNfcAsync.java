@@ -85,7 +85,6 @@ public class WriteGeoLocationNfcAsync extends AbstractNfcAsync {
         });
 
         super.executeWriteOperation();
-
-
     }
+
 }
