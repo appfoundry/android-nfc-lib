@@ -24,7 +24,7 @@ In order to get a quick demo running you could perform the following steps :
 * Go to your project's `build.gradle` file, and change the dependencies block to match the following line of code there :
 
 ``` groovy
-    compile 'be.appfoundry:nfc-lib:1.0'
+    compile 'be.appfoundry:nfc-lib:1.1'
 ```
 
 Now go to the created activity, and either
