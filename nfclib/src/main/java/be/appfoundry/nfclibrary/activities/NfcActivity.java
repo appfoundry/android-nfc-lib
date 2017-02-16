@@ -21,7 +21,6 @@
 
 package be.appfoundry.nfclibrary.activities;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -31,6 +30,7 @@ import android.nfc.NfcEvent;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -52,7 +52,7 @@ import be.appfoundry.nfclibrary.utilities.sync.NfcReadUtilityImpl;
  * @author Daneo Van Overloop
  *         NfcLibrary
  */
-abstract public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessageCallback {
+abstract public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback {
 
     private static final String TAG = NfcActivity.class.getName();
 

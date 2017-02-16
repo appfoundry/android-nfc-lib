@@ -181,6 +181,13 @@ public class NfcWriteUtilityImpl implements NfcWriteUtility {
         return writeToTag(message,tag);
     }
 
+    @Override
+    public boolean writeTextToTagFromIntent(@NotNull String message, Intent intent) throws FormatException, TagNotPresentException, ReadOnlyTagException, InsufficientCapacityException {
+        final NdefMessage ndefMessage = mNfcMessageUtility.createText(message);
+        final Tag tag = retrieveTagFromIntent(intent);
+        return writeToTag(ndefMessage, tag);
+    }
+
     /**
      * {@inheritDoc}
      */

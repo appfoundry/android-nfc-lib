@@ -72,7 +72,6 @@ public class MainActivity extends NfcActivity {
                 mProgressDialog.setMessage("Writing");
                 Log.d(TAG,"Writing !");
             }
-
         }
 
         @Override
@@ -92,7 +91,7 @@ public class MainActivity extends NfcActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nfc);
+        setContentView(R.layout.activity_main);
 
         Button emailButton = (Button) findViewById(R.id.btn_write_email_nfc);
         Button smsButton = (Button) findViewById(R.id.btn_write_sms_nfc);
@@ -244,7 +243,7 @@ public class MainActivity extends NfcActivity {
      * @param paramIntent
      *         containing found data
      */
-
+    @Override
     public void onNewIntent(final Intent paramIntent) {
         super.onNewIntent(paramIntent);
 
