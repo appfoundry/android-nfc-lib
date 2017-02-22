@@ -19,7 +19,7 @@
  * copies or substantial portions of the Software.
  */
 
-package be.appfoundry.nfclibrary.implementation;
+package be.appfoundry.nfc.implementation;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
@@ -43,12 +43,12 @@ import static org.hamcrest.core.Is.is;
  * NfcLibrary by daneo
  * Created on 14/04/14.
  */
-public class TestFilledFieldsNfcActivity extends ActivityInstrumentationTestCase2<NfcActivity> {
+public class TestFilledFieldsNfcActivity extends ActivityInstrumentationTestCase2<MainActivity> {
 
     private static final String TAG = TestFilledFieldsNfcActivity.class.getSimpleName();
 
     public TestFilledFieldsNfcActivity() {
-        super(NfcActivity.class);
+        super(MainActivity.class);
     }
 
     @Override

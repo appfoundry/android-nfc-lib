@@ -58,7 +58,6 @@ public class NfcReadUtilityImpl implements NfcReadUtility {
      */
     @Override
     public SparseArray<String> readFromTagWithSparseArray(Intent nfcDataIntent) {
-
         Parcelable[] messages = nfcDataIntent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
 
         SparseArray<String> resultMap = messages != null ? new SparseArray<String>(messages.length) : new SparseArray<String>();
@@ -79,8 +78,6 @@ public class NfcReadUtilityImpl implements NfcReadUtility {
         }
 
         return resultMap;
-
-
     }
 
     /**
@@ -130,8 +127,6 @@ public class NfcReadUtilityImpl implements NfcReadUtility {
     }
 
     private String parseAccordingToType(NdefRecord obj) {
-
-
         if (Arrays.equals(obj.getType(), NfcType.BLUETOOTH_AAR)) {
 
             byte[] toConvert = obj.getPayload();
@@ -146,7 +141,6 @@ public class NfcReadUtilityImpl implements NfcReadUtility {
         }
 
         return Uri.parse(parseAccordingToHeader(obj.getPayload())).toString();
-
     }
 
 }

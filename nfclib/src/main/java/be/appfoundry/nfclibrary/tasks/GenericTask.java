@@ -39,13 +39,11 @@ import be.appfoundry.nfclibrary.utilities.sync.NfcWriteUtilityImpl;
  */
 public class GenericTask extends AsyncTask<Void, Boolean, Boolean> {
 
-
     private static final String TAG = GenericTask.class.getSimpleName();
     private final NfcWriteUtility mNfcWriteUtility;
 
-    volatile boolean started = false;
-    AsyncUiCallback mAsyncUiCallback;
-    AsyncOperationCallback mAsyncOperationCallback;
+    private AsyncUiCallback mAsyncUiCallback;
+    private AsyncOperationCallback mAsyncOperationCallback;
     private Exception error;
 
     /**
@@ -58,10 +56,6 @@ public class GenericTask extends AsyncTask<Void, Boolean, Boolean> {
      *         if (asyncOperationCallback == null)
      */
     public GenericTask(AsyncUiCallback asyncUiCallback, @NotNull AsyncOperationCallback asyncOperationCallback) {
-        if (asyncOperationCallback == null) {
-            throw new NullPointerException("AsyncOperationCallback cannot be null. It can't be that you create me and expect me to do nothing, right ..?");
-        }
-
         mAsyncUiCallback = asyncUiCallback;
         mAsyncOperationCallback = asyncOperationCallback;
         mNfcWriteUtility = new NfcWriteUtilityImpl();
@@ -76,14 +70,9 @@ public class GenericTask extends AsyncTask<Void, Boolean, Boolean> {
      * @see #GenericTask(be.appfoundry.nfclibrary.tasks.interfaces.AsyncUiCallback, be.appfoundry.nfclibrary.tasks.interfaces.AsyncOperationCallback)
      */
     public GenericTask(AsyncUiCallback asyncUiCallback, @NotNull AsyncOperationCallback asyncOperationCallback, @NotNull NfcWriteUtility nfcWriteUtility) {
-        if (nfcWriteUtility == null) {
-            throw new NullPointerException("NfcWriteUtility cannot be null!");
-        }
-
         mAsyncUiCallback = asyncUiCallback;
         mAsyncOperationCallback = asyncOperationCallback;
         mNfcWriteUtility = nfcWriteUtility;
-
     }
 
     /**
@@ -96,11 +85,9 @@ public class GenericTask extends AsyncTask<Void, Boolean, Boolean> {
     protected Boolean doInBackground(Void... params) {
         Log.d(TAG, "Writing ..");
 
-
         boolean res = false;
         try {
-            started = true;
-            publishProgress(started);
+            publishProgress(true);
             if (mAsyncOperationCallback != null) {
                 res = mAsyncOperationCallback.performWrite(mNfcWriteUtility);
             } else {
@@ -146,6 +133,5 @@ public class GenericTask extends AsyncTask<Void, Boolean, Boolean> {
             mAsyncUiCallback.onProgressUpdate(values);
         }
     }
-
 
 }

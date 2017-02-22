@@ -157,7 +157,6 @@ public class NdefWriteImpl implements NdefWrite {
         return false;
     }
 
-
     /**
      * Sets read only.
      *

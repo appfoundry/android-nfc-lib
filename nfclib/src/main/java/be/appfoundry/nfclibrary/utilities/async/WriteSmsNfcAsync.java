@@ -57,7 +57,6 @@ public class WriteSmsNfcAsync extends AbstractNfcAsync {
      * @param asyncOperationCallback the async operation callback
      */
     public WriteSmsNfcAsync(@Nullable AsyncUiCallback asyncUiCallback, @NotNull AsyncOperationCallback asyncOperationCallback) {
-
         super(asyncUiCallback, asyncOperationCallback);
     }
 

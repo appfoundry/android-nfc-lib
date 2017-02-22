@@ -19,7 +19,7 @@
  * copies or substantial portions of the Software.
  */
 
-package be.appfoundry.nfclibrary.implementation;
+package be.appfoundry.nfc.implementation;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -27,14 +27,13 @@ import android.nfc.FormatException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import be.appfoundry.nfclibrary.activities.NfcActivity;
 import be.appfoundry.nfclibrary.exceptions.InsufficientCapacityException;
 import be.appfoundry.nfclibrary.exceptions.ReadOnlyTagException;
 import be.appfoundry.nfclibrary.exceptions.TagNotPresentException;
@@ -46,9 +45,9 @@ import be.appfoundry.nfclibrary.utilities.interfaces.NfcWriteUtility;
 import be.appfoundry.nfclibrary.utilities.sync.NfcReadUtilityImpl;
 
 
-public class NfcActivity extends be.appfoundry.nfclibrary.activities.NfcActivity {
+public class MainActivity extends NfcActivity {
 
-    private static final String TAG = NfcActivity.class.getName();
+    private static final String TAG = MainActivity.class.getName();
 
     NfcReadUtility mNfcReadUtility = new NfcReadUtilityImpl();
     ProgressDialog mProgressDialog;
@@ -60,7 +59,7 @@ public class NfcActivity extends be.appfoundry.nfclibrary.activities.NfcActivity
                 mProgressDialog.dismiss();
             }
             if (result) {
-                Toast.makeText(NfcActivity.this, "Write has been done!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Write has been done!", Toast.LENGTH_LONG).show();
             }
 
             Log.d(TAG,"Received our result : " + result);
@@ -73,7 +72,6 @@ public class NfcActivity extends be.appfoundry.nfclibrary.activities.NfcActivity
                 mProgressDialog.setMessage("Writing");
                 Log.d(TAG,"Writing !");
             }
-
         }
 
         @Override
@@ -82,19 +80,18 @@ public class NfcActivity extends be.appfoundry.nfclibrary.activities.NfcActivity
                 mProgressDialog.dismiss();
             }
             Log.i(TAG,"Encountered an error !",e);
-            Toast.makeText(NfcActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     };
 
     AsyncOperationCallback mAsyncOperationCallback;
     private AsyncTask<Object, Void, Boolean> mTask;
-    private boolean mRegistered;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nfc);
+        setContentView(R.layout.activity_main);
 
         Button emailButton = (Button) findViewById(R.id.btn_write_email_nfc);
         Button smsButton = (Button) findViewById(R.id.btn_write_sms_nfc);
@@ -238,7 +235,6 @@ public class NfcActivity extends be.appfoundry.nfclibrary.activities.NfcActivity
         if (getNfcAdapter() != null) {
             getNfcAdapter().disableForegroundDispatch(this);
         }
-
     }
 
     /**
@@ -247,7 +243,7 @@ public class NfcActivity extends be.appfoundry.nfclibrary.activities.NfcActivity
      * @param paramIntent
      *         containing found data
      */
-
+    @Override
     public void onNewIntent(final Intent paramIntent) {
         super.onNewIntent(paramIntent);
 
@@ -258,10 +254,7 @@ public class NfcActivity extends be.appfoundry.nfclibrary.activities.NfcActivity
             for (String data : mNfcReadUtility.readFromTagWithMap(paramIntent).values()) {
                 Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
             }
-
-
         }
-
     }
 
     private void showNoInputToast() {
@@ -281,31 +274,8 @@ public class NfcActivity extends be.appfoundry.nfclibrary.activities.NfcActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.nfc, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
-    }
-
-    public boolean isRegistered() {
-        return mRegistered;
-    }
-
-
-
     public void showDialog() {
-        mProgressDialog = new ProgressDialog(NfcActivity.this);
+        mProgressDialog = new ProgressDialog(MainActivity.this);
         mProgressDialog.setTitle(R.string.progressdialog_waiting_for_tag);
         mProgressDialog.setMessage(getString(R.string.progressdialog_waiting_for_tag_message));
         mProgressDialog.show();

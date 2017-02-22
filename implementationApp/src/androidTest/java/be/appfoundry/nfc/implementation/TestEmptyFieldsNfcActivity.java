@@ -19,16 +19,13 @@
  * copies or substantial portions of the Software.
  */
 
-package be.appfoundry.nfclibrary.implementation;
+package be.appfoundry.nfc.implementation;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.Spinner;
+import android.widget.EditText;
 
 import com.google.android.apps.common.testing.ui.espresso.ViewInteraction;
 import com.squareup.spoon.Spoon;
-
-import be.appfoundry.nfclibrary.implementation.NfcActivity;
-import be.idamediafoundry.nfclibrary.implementationApp.R;
 
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.click;
@@ -41,10 +38,10 @@ import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMat
  * NfcLibrary by daneo
  * Created on 30/04/14.
  */
-public class TestEmptyFieldsNfcActivity extends ActivityInstrumentationTestCase2<NfcActivity> {
+public class TestEmptyFieldsNfcActivity extends ActivityInstrumentationTestCase2<MainActivity> {
 
     public TestEmptyFieldsNfcActivity() {
-        super(NfcActivity.class);
+        super(MainActivity.class);
     }
 
     @Override
@@ -75,11 +72,11 @@ public class TestEmptyFieldsNfcActivity extends ActivityInstrumentationTestCase2
 
 
     public void testEmptyBluetoothFieldNotDisplayingAfterClick() {
-        final Spinner spinner = (Spinner) getActivity().findViewById(R.id.input_text_bluetooth_address);
-        spinner.post(new Runnable() {
+        final EditText editText = (EditText) getActivity().findViewById(R.id.input_text_bluetooth_address);
+        editText.post(new Runnable() {
             @Override
             public void run() {
-                spinner.setAdapter(null);
+                editText.setText(null);
             }
         });
         emptyFieldNotDisplayingToast(R.id.btn_write_bluetooth_nfc);

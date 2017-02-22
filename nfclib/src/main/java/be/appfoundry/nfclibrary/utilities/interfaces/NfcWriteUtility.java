@@ -135,6 +135,15 @@ public interface NfcWriteUtility {
     boolean writeNdefMessageToTagFromIntent(@NotNull NdefMessage message, Intent intent) throws FormatException, TagNotPresentException, ReadOnlyTagException, InsufficientCapacityException;
 
     /**
+     * Pass a raw NdefMessage along to write
+     * @param message to write to the tag
+     * @param intent to write to
+     * @return true if success
+     * @throws FormatException
+     */
+    boolean writeTextToTagFromIntent(@NotNull String message, Intent intent) throws FormatException, TagNotPresentException, ReadOnlyTagException, InsufficientCapacityException;
+
+    /**
      * Used to mark the following operation as readonly
      *
      * @return an instance of WriteUtility in order to chain
