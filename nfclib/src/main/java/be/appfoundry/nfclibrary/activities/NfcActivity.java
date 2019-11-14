@@ -30,9 +30,10 @@ import android.nfc.NfcEvent;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseArray;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -170,7 +171,6 @@ abstract public class NfcActivity extends AppCompatActivity implements NfcAdapte
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
         return new NfcMessageUtilityImpl().createText("You're seeing this message because you have not overridden the createNdefMessage(NfcEvent event) in your activity.");
-
     }
 
     /**

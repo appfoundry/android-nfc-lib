@@ -43,14 +43,14 @@ apply plugin: 'signing'
 //}
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 11
-        versionName "1.1"
+        targetSdkVersion 29
+        versionCode 12
+        versionName "1.2"
     }
     buildTypes {
         release {
@@ -63,13 +63,14 @@ android {
     }
     lintOptions {
         disable 'InvalidPackage'
+        abortOnError false
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.intellij:annotations:12.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.intellij:annotations:12.0'
 }
 
 android.libraryVariants.all { variant ->
@@ -80,23 +81,23 @@ android.libraryVariants.all { variant ->
         description "Generates Javadoc for $variant.name."
         source = variant.javaCompile.source
         ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
-        classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+        doFirst { classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar) }
         String path = buildDir.absolutePath + ("/javadoc/javadoc-${variant.name}")
         File output_dir = new File(path)
 
         output_dir.mkdirs()
-        destinationDir = output_dir;
+        destinationDir = output_dir
 
 
         // Packaging stuff
         def name = variant.buildType.name
-        if (name.equals(BuilderConstants.DEBUG)) {
-            return; // Skip debug builds.
+        if (name == BuilderConstants.DEBUG) {
+            return // Skip debug builds.
         }
         def task = project.tasks.create "jar${name.capitalize()}", Jar
         task.dependsOn variant.javaCompile
         task.from variant.javaCompile.destinationDir
-        artifacts.add('archives', task);
+        artifacts.add('archives', task)
     }
 
 }

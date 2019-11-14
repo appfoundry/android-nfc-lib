@@ -24,6 +24,8 @@ package be.appfoundry.nfc.implementation;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.nfc.FormatException;
+import android.nfc.NdefMessage;
+import android.nfc.NfcEvent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +44,7 @@ import be.appfoundry.nfclibrary.tasks.interfaces.AsyncUiCallback;
 import be.appfoundry.nfclibrary.utilities.async.WriteCallbackNfcAsync;
 import be.appfoundry.nfclibrary.utilities.interfaces.NfcReadUtility;
 import be.appfoundry.nfclibrary.utilities.interfaces.NfcWriteUtility;
+import be.appfoundry.nfclibrary.utilities.sync.NfcMessageUtilityImpl;
 import be.appfoundry.nfclibrary.utilities.sync.NfcReadUtilityImpl;
 
 
@@ -218,9 +221,7 @@ public class MainActivity extends NfcActivity {
             });
         }
 
-
         enableBeam();
-
     }
 
     @Override
@@ -235,6 +236,11 @@ public class MainActivity extends NfcActivity {
         if (getNfcAdapter() != null) {
             getNfcAdapter().disableForegroundDispatch(this);
         }
+    }
+
+    @Override
+    public NdefMessage createNdefMessage(NfcEvent event) {
+        return new NfcMessageUtilityImpl().createText("Message to beam");
     }
 
     /**

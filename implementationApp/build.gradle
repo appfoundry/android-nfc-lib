@@ -22,30 +22,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'spoon'
 
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.2.2'
-    }
-}
-
-repositories{
-    maven{
-        url "http://maven.appfoundry.be"
-    }
-
-    maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots"
-    }
-}
-spoon {
-    adbTimeout = 15
-    failIfNoDeviceConnected = false
-}
-
 android {
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
@@ -53,16 +29,16 @@ android {
         exclude 'NOTICE'
         exclude 'LICENSE.txt'
     }
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
 
     defaultConfig {
         applicationId "be.appfoundry.nfc.implementation"
         testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
         minSdkVersion 18
-        targetSdkVersion 25
-        versionCode 11
-        versionName "1.1"
+        targetSdkVersion 29
+        versionCode 12
+        versionName "1.2"
     }
     buildTypes {
         release {
@@ -80,16 +56,39 @@ android {
     }
 }
 
+buildscript {
+    repositories {
+        //maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.2.2'
+    }
+}
+
+repositories{
+    maven{
+        url "http://maven.appfoundry.be"
+    }
+
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+    jcenter()
+}
+spoon {
+    adbTimeout = 15
+    failIfNoDeviceConnected = false
+}
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':nfclib')
-    //compile 'be.appfoundry:nfc-lib:1.1'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':nfclib')
+    //compile 'be.appfoundry:nfc-lib:1.2'
 
-    androidTestCompile 'com.jakewharton.espresso:espresso:1.1-r3'
-    androidTestCompile 'com.squareup.spoon:spoon-client:1.7.1'
+    androidTestImplementation 'com.jakewharton.espresso:espresso:1.1-r3'
+    androidTestImplementation 'com.squareup.spoon:spoon-client:1.7.1'
 
-    //androidTestCompile 'org.hamcrest:hamcrest-all:1.3'
-    compile 'com.android.support:design:25.1.1'
-    compile 'javax.annotation:jsr250-api:1.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'javax.annotation:jsr250-api:1.0'
 }

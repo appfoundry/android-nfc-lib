@@ -70,12 +70,10 @@ public class NfcMessageUtilityImpl implements NfcMessageUtility {
      * @param payload
      *         byte form of the content
      *
-     * @return true if success
+     * @return NdefMessage
      */
     private NdefMessage createNdefMessage(short tnfType, byte[] type, byte[] payload) {
-        NdefRecord record = new NdefRecord(tnfType,
-                type, new byte[0],
-                payload);
+        NdefRecord record = new NdefRecord(tnfType, type, new byte[0], payload);
         return new NdefMessage(record);
     }
 
@@ -164,10 +162,9 @@ public class NfcMessageUtilityImpl implements NfcMessageUtility {
     @Override
     public NdefMessage createText(@NotNull String text) {
         byte[] payload = new byte[text.getBytes().length+1];
-        System.arraycopy(text.getBytes(),0,payload,1,text.length());
+        System.arraycopy(text.getBytes(),0, payload,1, text.length());
 
-        return createNdefMessage(NdefRecord.TNF_WELL_KNOWN,
-                NdefRecord.RTD_TEXT,payload);
+        return createNdefMessage(NdefRecord.TNF_WELL_KNOWN, NdefRecord.RTD_TEXT, payload);
     }
 
     /**

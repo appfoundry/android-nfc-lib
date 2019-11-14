@@ -123,12 +123,11 @@ public class NfcReadUtilityImpl implements NfcReadUtility {
     }
 
     private String parseAccordingToHeader(@NotNull byte[] payload) {
-        return (payload.length > 0) ? new String(payload, 1, payload.length - 1, Charset.forName("US-ASCII")).trim() : "";
+        return (payload.length > 0) ? new String(payload, 0, payload.length, Charset.forName("US-ASCII")).trim() : "";
     }
 
     private String parseAccordingToType(NdefRecord obj) {
         if (Arrays.equals(obj.getType(), NfcType.BLUETOOTH_AAR)) {
-
             byte[] toConvert = obj.getPayload();
             StringBuilder result = new StringBuilder();
             for (int i = toConvert.length - 1; i >= 2; i--) {
