@@ -43,14 +43,11 @@ apply plugin: 'signing'
 //}
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 29
-        versionCode 12
-        versionName "1.2"
+        minSdkVersion 21
+        targetSdkVersion 34
+        compileSdkVersion 34
     }
     buildTypes {
         release {
@@ -69,7 +66,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.intellij:annotations:12.0'
 }
 
